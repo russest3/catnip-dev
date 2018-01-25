@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: catnip-service
+  labels:
+    app: catnip
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080      
+      targetPort: 5000
+  selector:
+    app: catnip
+  type: LoadBalancer

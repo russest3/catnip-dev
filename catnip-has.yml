@@ -1,0 +1,24 @@
+---
+kind: HorizontalPodAutoscaler
+apiVersion: autoscaling/v1
+metadata:
+  name: catnip-deployment
+  namespace: default
+  selfLink: "/apis/autoscaling/v1/namespaces/default/horizontalpodautoscalers/catnip-deployment"  
+  annotations:
+    autoscaling.alpha.kubernetes.io/conditions: '[{"type":"AbleToScale","status":"True","lastTransitionTime":"2018-01-24T16:14:04Z","reason":"SucceededGetScale","message":"the
+      HPA controller was able to get the target''s current scale"},{"type":"ScalingActive","status":"False","lastTransitionTime":"2018-01-24T16:14:04Z","reason":"FailedGetResourceMetric","message":"the
+      HPA was unable to compute the replica count: unable to get metrics for resource
+      cpu: failed to get pod resource metrics: the server could not find the requested
+      resource (get services http:heapster:)"}]'
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: catnip-deployment
+    apiVersion: extensions/v1beta1
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 50
+status:
+  currentReplicas: 1
+  desiredReplicas: 1
